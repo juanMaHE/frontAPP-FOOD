@@ -1,0 +1,38 @@
+<div class="container">
+<div class="row" infinite-scroll  (scrolled)="onScrollDown()" >
+    <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let alimento of alimento">
+        <div class="card">
+            <div class="image" style="margin: 25px 50px 75px">
+                <a [routerLink]="['/character-list', alimento.id]">
+                    <img [src]="alimento.imagen" [alt]="alimento.nombre" class="card-img-top" />
+                </a>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><a [routerLink]="['/character-list', alimento.id]">
+                    <h2>{{ alimento.nombre}}</h2>
+                </a></h5>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{ alimento.categoria.nombre }}</li>
+              </ul>
+            
+           
+        </div>
+    </div>
+    <div
+      class="col-xs-12 col-sm-12 col-md-12 mt-5 container-notFound align-self-center"
+      *ngIf="alimento.length <= 0" >
+  
+    <span class="loading style-3" style="position: relative;"></span>
+    </div>
+
+    <button 
+    [ngClass]="'no-hidden'"
+    *ngIf="showGoUpButton"
+    clas="btn btn-dark"
+    (click)="onScrollTop()">
+      Go UP
+    </button>
+  </div>
+</div>
+
